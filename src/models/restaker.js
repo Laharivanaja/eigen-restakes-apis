@@ -1,9 +1,24 @@
 const mongoose = require('mongoose');
 
 const RestakerSchema = new mongoose.Schema({
-  address: String,
-  amountRestaked: Number,
-  validator: String,
+  userAddress: {
+    type: String,
+    required: true,
+    lowercase: true
+  },
+  amountRestakedStETH: {
+    type: String,
+    required: true
+  },
+  targetAVSOperatorAddress: {
+    type: String,
+    required: true,
+    lowercase: true
+  },
+  lastUpdated: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('Restaker', RestakerSchema);
